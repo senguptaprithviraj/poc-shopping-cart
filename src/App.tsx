@@ -17,9 +17,6 @@ const App = () => {
     getPosts();
   }, []);
 
-  useEffect(() => {
-    console.log(allItems);
-  }, [allItems]);
   return (
     <div
       className={`grid place-items-center py-20 ${isLoading && "opacity-30"}`}

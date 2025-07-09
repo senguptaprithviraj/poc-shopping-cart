@@ -37,7 +37,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     toggleLoader(true);
     try {
       await client.patch(item._id).set({ inCart: true }).commit();
-      console.log("Product marked as added to cart in Sanity!");
+      console.log("Product marked as removed from cart in Sanity!");
       toggleLoader(false);
       setAllItems((prevItems) => {
         return prevItems.map((prevItem) => {
@@ -59,7 +59,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         .patch(cartItem._id)
         .set({ quantity: cartItem.quantity + amount })
         .commit();
-      console.log("Product marked as added to cart in Sanity!");
+      console.log("Product marked as updated quantity in Sanity!");
       toggleLoader(false);
       setAllItems((prevItems) => {
         return prevItems.map((item) => {
