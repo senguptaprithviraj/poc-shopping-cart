@@ -24,6 +24,17 @@ const ShoppingCart = () => {
     setTotalPrice(price);
   }, [allItems]);
 
+  const getCartCount = (): string => {
+    const totalCartCount = cartItems.reduce((acc: number, item: Product) => {
+      if (item.inCart && item.quantity > 1) {
+        acc = acc + item.quantity;
+      } else if (item.inCart) {
+        acc = acc + 1;
+      }
+      return acc;
+    }, 0);
+    return totalCartCount > 9 ? "9+" : `${totalCartCount}`;
+  };
   return (
     <>
       {cartItems.length !== 0 && (
@@ -46,7 +57,7 @@ const ShoppingCart = () => {
           >
             <ShoppingCartIcon className="text-xs text-white" />
             <span className="w-6 h-6 bg-pink-400 absolute -bottom-4 -left-2 grid place-items-center border border-gray-300 rounded-full text-sm text-white">
-              {cartItems.length > 9 ? "9+" : cartItems.length}
+              {getCartCount()}
             </span>
           </button>
           <div className="h-screen flex flex-col gap-y-3 overflow-y-scroll px-5 pb-24 pt-20">

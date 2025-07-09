@@ -36,7 +36,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const removeFromCart = async (item: Product) => {
     toggleLoader(true);
     try {
-      await client.patch(item._id).set({ inCart: true }).commit();
+      await client.patch(item._id).set({ inCart: false }).commit();
       console.log("Product marked as removed from cart in Sanity!");
       toggleLoader(false);
       setAllItems((prevItems) => {
